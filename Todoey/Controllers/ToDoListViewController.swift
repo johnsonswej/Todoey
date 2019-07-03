@@ -37,16 +37,15 @@ class ToDoListViewController: SwipeTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         if let item = todoItems?[indexPath.row] {
-            cell.textLabel?.text = item.title
-            
+            cell.textLabel?.text = todoItems?[indexPath.row].title ?? "No Items found."
             cell.accessoryType = item.done ? .checkmark : .none
-        } else {
-            cell.textLabel?.text = "Add a new Item."
         }
-       
+        
         return cell
+
+
     }
     
     //MARK - TableView Delegate Methods
@@ -75,7 +74,6 @@ class ToDoListViewController: SwipeTableViewController {
         var textField = UITextField()
         let alert = UIAlertController(title: "Add New Todoey Item", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
-            // what will happen once user clicks add item button on UIAlert
             
             if let currentCategory = self.selectedCategory {
                 do {
@@ -114,7 +112,21 @@ class ToDoListViewController: SwipeTableViewController {
         tableView.reloadData()
 
     }
-
+    
+    //MARK: - delete data from swipe
+    
+    override func updateModel(at indexPath: IndexPath) {
+        if let itemForDeletion = self.todoItems?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(itemForDeletion)
+                }
+            } catch {
+                print("Error deleting Item \(error)")
+            }
+            
+        }
+    }
 }
 
 //MARK: - Search bar methods
