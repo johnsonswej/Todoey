@@ -42,12 +42,14 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Items" id="JLS-DD-BKx">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="P4a-Qa-V49">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="uuq-Xi-jNK" id="HVK-gf-fRc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="wVE-wO-XuS" id="dde-nz-WTX"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="60d-CB-UVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -58,8 +60,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dLK-68-LP3" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Klg-16-tQA">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="blackTranslucent" largeTitles="YES" id="Klg-16-tQA">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.20392156859999999" green="0.28627450980000002" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
